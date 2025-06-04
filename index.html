@@ -3,98 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>War Horse: Advanced Quiz</title>
+    <title>War Horse: Advanced Quiz (Rebuilt)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Rustic Neutrals with Subtle Gradient Background -->
-    <!-- Application Structure Plan: SPA interactive quiz. Linear structure through 7 themed sections: 1. Warm-up & General Comprehension, 2. Plot and Key Events, 3. Character Analysis, 4. Themes and Messages, 5. Key Quote Identification, 6. Vocabulary and Author's Style, 7. Hypothetical and Creative Questions. Each section mixes question types (Multiple Choice, True/False, Sentence Ordering) to assess different facets of understanding. User flow involves answering and receiving instant feedback. Questions within sections are randomized on reset for replayability. This structure was chosen for comprehensive and progressive assessment of book knowledge, allowing users to explore different narrative angles. -->
-    <!-- Visualization & Content Choices: 
-        1. Multiple Choice/True-False (All sections): Goal: Assess factual recall, concept understanding, analysis. Viz/Pres: Clickable options in cards. Interaction: Click to check, visual feedback, explanation, score update. Justification: Intuitive, immediate reinforcement. Library: Vanilla JS, Tailwind.
-        2. Sentence Ordering (Plot & Events): Goal: Assess understanding of chronology. Viz/Pres: Draggable text blocks, drop zone. Interaction: Drag-drop (mouse & touch), "Check Order" button. Justification: Tactile, interactive, requires sequential understanding, now mobile-friendly. Library: Vanilla JS, Tailwind.
-        3. Quote Identification (Multiple Choice): Goal: Recognize important dialogues and their meaning/context. Viz/Pres: Quote + options (speaker/context). Interaction: Click. Justification: Highlights key moments. Library: Vanilla JS, Tailwind.
-        4. Vocabulary & Style (Multiple Choice): Goal: Understand specific lexicon and stylistic elements. Viz/Pres: Word/concept + definition/analysis options. Interaction: Click. Justification: Enriches vocabulary and literary appreciation. Library: Vanilla JS, Tailwind.
-        5. Hypothetical & Creative (Multiple Choice): Goal: Foster imaginative thinking and deep interpretation. Viz/Pres: "What if" scenarios + interpretive options. Interaction: Click. Justification: Promotes critical thinking. Library: Vanilla JS, Tailwind.
-        6. Score Tracker: Goal: User progress. Viz/Pres: Fixed display. Interaction: Dynamic JS update. Justification: Clear performance feedback. Library: Vanilla JS, Tailwind. -->
+    <!-- Chosen Palette: Serene Earth Tones -->
+    <!-- Application Structure Plan: Single-page interactive quiz, rebuilt for stability. Seven themed sections with randomized questions within each: 1. Warm-up & General Comprehension, 2. Plot and Key Events, 3. Character Analysis, 4. Themes and Messages, 5. Key Quote Identification, 6. Vocabulary and Author's Style, 7. Hypothetical and Creative Questions. Focus on varied question types and immediate feedback. Enhanced drag-and-drop for mobile. -->
+    <!-- Visualization & Content Choices: Standard quiz elements (MCQ, T/F, Sentence Ordering) with JS for interactivity and dynamic content. Justification: Proven methods for engagement and knowledge assessment, now with more robust JS implementation. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Merriweather', serif;
-            background-image: linear-gradient(to bottom right, #FDF8F0, #FAF5EF); /* Subtle gradient background */
-            color: #374151; /* Gray-700 */
+            background-color: #FBF9F6; /* Off-white, very light beige */
+            color: #4A4A4A; /* Darker Gray for text */
         }
         h1, h2, h3, h4 {
             font-family: 'IM Fell English', serif;
-            color: #1F2937; /* Gray-800 */
+            color: #3A322D; /* Dark Brown */
         }
         .quiz-card {
             background-color: #FFFFFF;
-            border: 1px solid #DED8CF; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            border-radius: 0.75rem; /* More rounded corners */
+            border: 1px solid #EAE0D5; /* Light Taupe */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+            border-radius: 0.75rem; 
         }
         .option {
-            border: 2px solid #E5E7EB; /* Gray-200 */
+            border: 2px solid #DCD3C9; /* Lighter Taupe */
             transition: all 0.2s ease-in-out;
             border-radius: 0.5rem;
+            background-color: #FFFDFA;
         }
         .option:hover {
-            border-color: #A0522D; /* Sienna Brown - for hover */
-            background-color: #FFFBF5; /* Lighter cream for hover */
-        }
-        .option.selected { /* This class might be redundant if direct feedback is given */
-            border-color: #A0522D;
-            background-color: #F5EFE6;
+            border-color: #8C7A6B; /* Muted Brown */
+            background-color: #F8F5F0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
         .option.correct {
-            background-color: #E6FFFA; /* Mint cream - lighter green */
-            border-color: #34D399; /* Emerald-400 */
-            color: #065F46; /* Emerald-800 */
+            background-color: #E3F9E6; /* Pale Green */
+            border-color: #5CB85C; /* Success Green */
+            color: #2E7D32; /* Darker Green */
         }
         .option.incorrect {
-            background-color: #FFF1F2; /* Rose white - lighter red */
-            border-color: #F87171; /* Red-400 */
-            color: #991B1B; /* Red-800 */
+            background-color: #FDECEA; /* Pale Red */
+            border-color: #D9534F; /* Danger Red */
+            color: #A94442; /* Darker Red */
         }
         .explanation {
-            background-color: #F8F9FA; /* Very light gray */
-            border-left: 4px solid #A0522D; /* Sienna Brown accent */
+            background-color: #F7F7F7; /* Very Light Gray */
+            border-left: 4px solid #8C7A6B; /* Muted Brown accent */
             border-radius: 0.25rem;
-            color: #4B5563; /* Gray-600 */
+            color: #555555; 
         }
         .draggable {
             cursor: move;
             user-select: none;
-            border: 2px dashed #D1D5DB; /* Gray-300 */
-            background-color: #F9FAFB;
+            border: 2px dashed #C8BBAF; /* Medium Taupe dashed */
+            background-color: #FDFBF8;
             border-radius: 0.375rem;
+            transition: background-color 0.2s;
+        }
+        .draggable:hover {
+            background-color: #F5F1EB;
         }
         .draggable.dragging, .draggable.touch-dragging {
-            opacity: 0.6;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
-            z-index: 1000; /* Ensure dragged item is on top */
+            opacity: 0.7;
+            background-color: #EFEAE4;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+            z-index: 1000; 
         }
         .drop-zone {
-            border: 3px dashed #A0522D; /* Sienna Brown dashed border */
+            border: 3px dashed #8C7A6B; /* Muted Brown dashed border */
             min-height: 160px;
-            background-color: #FAF7F2; /* Slightly different cream for drop zone */
+            background-color: #F6F2ED; 
             border-radius: 0.5rem;
         }
+        .source-draggable-area {
+             border: 1px solid #EAE0D5;
+             background-color: #F9F6F0;
+        }
         .score-tracker {
-            background-color: #6B4226; /* Darker, richer brown */
-            color: #FFFBF5; /* Lighter cream text */
+            background-color: #5D4037; /* Darker, richer brown */
+            color: #FFFFFF; 
             font-family: 'IM Fell English', serif;
-            border-radius: 9999px; /* Pill shape */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            border-radius: 9999px; 
+            box-shadow: 0 3px 12px rgba(0,0,0,0.25);
         }
         .button-primary {
-            background-color: #795548; /* Muted Brown */
+            background-color: #795548; 
             color: white;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .button-primary:hover {
-            background-color: #5D4037; /* Darker Muted Brown */
+            background-color: #6D4C41; 
+            transform: translateY(-1px);
         }
         .no-select {
             -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
@@ -197,7 +200,7 @@
                 { question: "What happens to the kind German soldier Friedrich?", options: ["He deserts the army and escapes with Joey and Topthorn.", "He is killed in a bombardment shortly after Topthorn dies.", "He survives the war and writes to Emilie's grandfather.", "He is promoted for his bravery and care of the horses."], answer: "He is killed in a bombardment shortly after Topthorn dies.", explanation: "Tragically, Friedrich is killed by shellfire while trying to get Joey to safety, moments after Topthorn's death." },
                 { question: "What is the final outcome of the auction for Joey at the end of the war?", options: ["Sergeant Thunder successfully buys him with the soldiers' pooled money.", "He is sold to the butcher from Cambrai.", "Emilie's grandfather appears and buys him, intending to keep his promise to Emilie.", "Albert manages to outbid everyone himself."], answer: "Emilie's grandfather appears and buys him, intending to keep his promise to Emilie.", explanation: "In a dramatic turn, Emilie's grandfather arrives and secures Joey, stating he will pay any price." }
             ],
-            plotTF: [ // Balanced T/F for this section
+            plotTF: [ 
                 { question: "Captain Nicholls is killed in Joey's first cavalry charge.", answer: true, explanation: "Tragically, Captain Nicholls dies leading the charge, and Joey gallops on riderless for a short time." },
                 { question: "Topthorn dies from a shrapnel wound during a heavy bombardment.", answer: false, explanation: "Topthorn dies from heart failure, weakened by illness and the hardships of war, while still in service with the German artillery." },
                 { question: "Emilie fully recovers from her illness and is reunited with Joey after the war.", answer: false, explanation: "Emilie's grandfather sadly informs Albert that Emilie died the previous year." },
@@ -225,12 +228,12 @@
                 { question: "The Welsh soldier who helps rescue Joey from No Man's Land demonstrates:", options: ["Extreme aggression towards the enemy", "A pragmatic sense of humor and shared humanity with the German soldier", "A complete lack of understanding of horses", "A desire to capture Joey for his own personal gain"], answer: "A pragmatic sense of humor and shared humanity with the German soldier", explanation: "His interaction with the German soldier is marked by a surprising camaraderie and a peaceful resolution to a potentially tense situation." },
                 { question: "Major Martin, the veterinary officer, ultimately makes the decision to:", options: ["Immediately put Joey down upon diagnosing tetanus due to the low chance of survival.", "Refuse any treatment for Joey as he is just an ordinary horse.", "Allow and support the extensive, round-the-clock effort to save Joey from tetanus.", "Send Joey back to the front line despite his illness."], answer: "Allow and support the extensive, round-the-clock effort to save Joey from tetanus.", explanation: "Despite the grim prognosis, Major Martin is persuaded by Albert, David, and Sergeant Thunder to give Joey a chance, and he directs the treatment." }
             ],
-            charactersTF: [ // Balanced T/F for this section
+            charactersTF: [ 
                 { question: "Albert's mother is portrayed as a weak character who has little influence on family decisions.", answer: false, explanation: "Albert's mother often acts as a mediator and a voice of reason, showing quiet strength and understanding, though she cannot always prevent her husband's actions." },
                 { question: "Topthorn's defining characteristic is his speed, making him faster than Joey in every encounter.", answer: false, explanation: "While Topthorn is strong and fast, the narrative suggests Joey might be slightly faster, but Topthorn excels in stamina and presence. They are well-matched companions rather than direct competitors in speed." },
                 { question: "Emilie's grandfather shows no emotional attachment to Joey and Topthorn, seeing them only as farm animals.", answer: false, explanation: "Emilie's grandfather clearly develops an affection for the horses, evident in his care for them and his ultimate actions at the auction to fulfill Emilie's wish." },
                 { question: "Captain Stewart is depicted as a cold and distant officer, unlike his friend Captain Nicholls.", answer: false, explanation: "Captain Stewart shows loyalty to Nicholls by caring for Joey, and he has a strong bond with his own horse, Topthorn. He is a competent and respected officer." },
-                { question: "The 'butcher from Cambrai' is a sympathetic character forced into his trade by the war.", answer: false, explanation: "He is depicted with 'weasel eyes' and a 'smile so full of consummate greed and evil,' representing a grim and unwelcome fate for the horses." },
+                { question: "The 'butcher from Cambrai' at the auction represents hope and salvation for the horses.", answer: false, explanation: "The butcher represents the grim fate many army horses faced – being sold for meat. His presence creates tension and fear." },
                 { question: "Trooper Warren, despite his lack of riding skill, is deeply committed to Joey's well-being.", answer: true, explanation: "Joey notes that Warren's 'loving attention' kept him alive, highlighting his meticulous care despite his nervousness as a rider." },
                 { question: "Herr Hauptmann, the tall German officer, is secretly working against his own army to help the British.", answer: false, explanation: "Herr Hauptmann is a loyal German officer; his kindness towards the horses stems from a sense of honor and respect for animals, not from any allegiance to the British." },
                 { question: "The two golden Haflinger ponies are shown to be cowardly and unreliable under fire.", answer: false, explanation: "The Haflingers are described as courageous and hardworking, often bringing a moment of cheer despite their small size." },
@@ -317,9 +320,8 @@
 
         let score = 0;
         const scoreElement = document.getElementById('score');
-        let questionCounter = 0; // Used to number questions sequentially
+        let questionCounter = 0; 
 
-        // Global variables for touch drag-and-drop
         let g_activeTouchDraggedItem = null;
         let g_activeTouchXOffset = 0;
         let g_activeTouchYOffset = 0;
@@ -349,14 +351,13 @@
                 return;
             }
             questionCounter++;
-            const questionId = `mcq-${questionCounter}`; // Unique ID for options of this question
+            const questionId = `mcq-${questionCounter}`; 
             const { card, optionsContainer } = createQuestionCard(qData.question, questionCounter);
 
             if (!qData.options || !Array.isArray(qData.options)) {
-                console.error("Malformed MC question data (missing or invalid options):", qData);
-                // Optionally, append a message to the card indicating the error
+                console.error("Malformed MC question data (missing or invalid options):", qData.question);
                 card.innerHTML += "<p class='text-red-500'>Error: Question options are missing or invalid.</p>";
-                container.appendChild(card); // Still append card to show there was a question
+                container.appendChild(card); 
                 return; 
             }
 
@@ -381,7 +382,7 @@
             const { card, optionsContainer } = createQuestionCard(qData.question, questionCounter);
 
             if (typeof qData.answer !== 'boolean') {
-                 console.error("Malformed TF question data (answer is not boolean):", qData);
+                 console.error("Malformed TF question data (answer is not boolean):", qData.question);
                  card.innerHTML += "<p class='text-red-500'>Error: Question answer format is invalid.</p>";
                  container.appendChild(card);
                  return;
@@ -460,7 +461,7 @@
             dropZone.className = 'w-full md:w-1/2 p-4 rounded-lg space-y-3 drop-zone no-select';
             
             if (!qData.sentences || !Array.isArray(qData.sentences) || !qData.correctOrder || !Array.isArray(qData.correctOrder)) {
-                console.error("Malformed SO question data:", qData);
+                console.error("Malformed SO question data:", qData.title);
                 card.innerHTML += "<p class='text-red-500'>Error: Sentence ordering question data is invalid.</p>";
                 container.appendChild(card);
                 return;
@@ -476,8 +477,8 @@
                 draggable.textContent = sentence;
                 draggable.id = `${questionId}-item-${s_index}`;
                 
-                draggable.addEventListener('dragstart', handleDragStart);
-                draggable.addEventListener('dragend', handleDragEnd);
+                draggable.addEventListener('dragstart', handleDragStartSO);
+                draggable.addEventListener('dragend', handleDragEndSO);
                 draggable.addEventListener('touchstart', handleTouchStartSO, { passive: true });
 
                 sourceContainer.appendChild(draggable);
@@ -496,18 +497,18 @@
             card.appendChild(buttonContainer);
             container.appendChild(card);
 
-            let currentMouseDraggedItem = null; 
+            let currentMouseDraggedItemSO = null; 
 
-            function handleDragStart(e) {
+            function handleDragStartSO(e) {
                 if (!checkButton.disabled) {
-                    currentMouseDraggedItem = e.target;
+                    currentMouseDraggedItemSO = e.target;
                     setTimeout(() => e.target.classList.add('dragging'), 0);
                 }
             }
-            function handleDragEnd(e) {
-                if (!checkButton.disabled && e.target.classList.contains('draggable')) { // Added check
+            function handleDragEndSO(e) {
+                if (!checkButton.disabled && e.target.classList.contains('draggable')) { 
                     e.target.classList.remove('dragging');
-                    currentMouseDraggedItem = null;
+                    currentMouseDraggedItemSO = null;
                 }
             }
 
@@ -517,15 +518,14 @@
                 });
                 area.addEventListener('drop', (e) => { 
                     e.preventDefault();
-                    if (currentMouseDraggedItem && !checkButton.disabled) {
+                    if (currentMouseDraggedItemSO && !checkButton.disabled) {
                         const targetDropArea = e.currentTarget;
                         const afterElement = getDragAfterElementSO(targetDropArea, e.clientY);
                         if (afterElement == null) {
-                            targetDropArea.appendChild(currentMouseDraggedItem);
+                            targetDropArea.appendChild(currentMouseDraggedItemSO);
                         } else {
-                            targetDropArea.insertBefore(currentMouseDraggedItem, afterElement);
+                            targetDropArea.insertBefore(currentMouseDraggedItemSO, afterElement);
                         }
-                        // No need to remove 'dragging' here, dragend will handle it.
                     }
                 });
             });
@@ -624,9 +624,13 @@
                 } else { 
                     const questionCard = g_activeTouchDraggedItem.closest('.quiz-card');
                     if (questionCard) {
-                        const originalSourceContainer = questionCard.querySelector('.source-draggable-area');
+                        const originalSourceContainer = questionCard.querySelector(`#${g_activeTouchDraggedItem.id.substring(0, g_activeTouchDraggedItem.id.lastIndexOf('-item-') )}-source`);
                         if (originalSourceContainer) {
                             originalSourceContainer.appendChild(g_activeTouchDraggedItem);
+                        } else {
+                             // Fallback if specific source not found, try any source area in the card
+                            const genericSource = questionCard.querySelector('.source-draggable-area');
+                            if(genericSource) genericSource.appendChild(g_activeTouchDraggedItem);
                         }
                     }
                 }
@@ -656,7 +660,7 @@
                 const container = document.getElementById(section.container);
                 if (!container) {
                     console.error(`BuildQuiz: Container element ${section.container} not found.`);
-                    return; // Skip this section if container doesn't exist
+                    return; 
                 }
 
                 const dataArray = section.data.slice(); 
@@ -665,7 +669,7 @@
                 const questionsForSection = dataArray.slice(0, numQuestionsToDisplay);
 
                 questionsForSection.forEach(qData => {
-                    if (!qData || typeof qData.question !== 'string' ) { // Basic check for qData validity
+                    if (!qData || typeof qData.question !== 'string' ) { 
                         console.warn("Skipping malformed question data:", qData);
                         return;
                     }
