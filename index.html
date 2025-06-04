@@ -73,6 +73,7 @@
         .draggable.dragging, .draggable.touch-dragging {
             opacity: 0.6;
             box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+            z-index: 1000; /* Ensure dragged item is on top */
         }
         .drop-zone {
             border: 3px dashed #A0522D; /* Sienna Brown dashed border */
@@ -196,17 +197,17 @@
                 { question: "What happens to the kind German soldier Friedrich?", options: ["He deserts the army and escapes with Joey and Topthorn.", "He is killed in a bombardment shortly after Topthorn dies.", "He survives the war and writes to Emilie's grandfather.", "He is promoted for his bravery and care of the horses."], answer: "He is killed in a bombardment shortly after Topthorn dies.", explanation: "Tragically, Friedrich is killed by shellfire while trying to get Joey to safety, moments after Topthorn's death." },
                 { question: "What is the final outcome of the auction for Joey at the end of the war?", options: ["Sergeant Thunder successfully buys him with the soldiers' pooled money.", "He is sold to the butcher from Cambrai.", "Emilie's grandfather appears and buys him, intending to keep his promise to Emilie.", "Albert manages to outbid everyone himself."], answer: "Emilie's grandfather appears and buys him, intending to keep his promise to Emilie.", explanation: "In a dramatic turn, Emilie's grandfather arrives and secures Joey, stating he will pay any price." }
             ],
-            plotTF: [
-                { question: "Captain Nicholls is killed by a sniper while sketching Joey in the stables.", answer: false, explanation: "Captain Nicholls is killed leading Joey's first cavalry charge in battle." },
-                { question: "Topthorn dies peacefully of old age on Emilie's farm after the war.", answer: false, explanation: "Topthorn dies from heart failure, exacerbated by illness and the hardships of war, while still in service with the German artillery." },
-                { question: "Emilie recovers fully from her pneumonia and lives to see Joey again after the war.", answer: false, explanation: "Emilie's grandfather sadly informs Albert that Emilie died the previous year, having lost the will to live after the horses were taken." },
-                { question: "The British and German soldiers in No Man's Land immediately start a firefight over who should claim Joey.", answer: false, explanation: "Instead of fighting, a Welsh soldier and a German soldier engage in a remarkably civil discussion and decide Joey's fate with a coin toss." },
-                { question: "Albert is able to buy Joey back from Emilie's grandfather for the exact amount the soldiers had collected.", answer: false, explanation: "Emilie's grandfather sells Joey to Albert for a symbolic one English penny and a solemn promise." },
-                { question: "Joey's journey through the war primarily takes him through the battlefields of Russia.", answer: false, explanation: "Joey's wartime experiences are set in France and Belgium on the Western Front." },
-                { question: "Albert successfully enlists in the army the very first time he tries, alongside his father.", answer: false, explanation: "Albert is initially too young to enlist. His father does not enlist with him." },
-                { question: "The conditions for the horses in the German artillery unit are described as comfortable and well-provisioned.", answer: false, explanation: "This period is one of extreme hardship, with scarce food, constant exposure, and grueling work leading to the decline of many horses." },
-                { question: "David, Albert's friend in the Veterinary Corps, survives the war and returns home with Albert.", answer: false, explanation: "David is tragically killed by a stray shell, a significant loss for Albert." },
-                { question: "After the war, Joey spends his days in blissful retirement, never working on the farm again.", answer: false, explanation: "Joey returns to work on the land with old Zoey, though under Albert's loving care." }
+            plotTF: [ // Balanced T/F for this section
+                { question: "Captain Nicholls is killed in Joey's first cavalry charge.", answer: true, explanation: "Tragically, Captain Nicholls dies leading the charge, and Joey gallops on riderless for a short time." },
+                { question: "Topthorn dies from a shrapnel wound during a heavy bombardment.", answer: false, explanation: "Topthorn dies from heart failure, weakened by illness and the hardships of war, while still in service with the German artillery." },
+                { question: "Emilie fully recovers from her illness and is reunited with Joey after the war.", answer: false, explanation: "Emilie's grandfather sadly informs Albert that Emilie died the previous year." },
+                { question: "The British and German soldiers in No Man's Land resolve the dispute over Joey through a brief skirmish.", answer: false, explanation: "Instead of fighting, a Welsh soldier and a German soldier engage in a remarkably civil discussion and decide Joey's fate with a coin toss." },
+                { question: "Albert is able to buy Joey back from Emilie's grandfather for a substantial sum of money raised by his fellow soldiers.", answer: false, explanation: "Emilie's grandfather sells Joey to Albert for a symbolic one English penny and a solemn promise." },
+                { question: "Joey's journey through the war takes him through France and Belgium.", answer: true, explanation: "Joey is shipped to France and participates in battles there. The initial news of war involved Germans marching into Belgium." },
+                { question: "Albert is initially too young to enlist when he first tries to join the army.", answer: true, explanation: "Albert is turned away because he is under seventeen when he first attempts to join up to find Joey." },
+                { question: "The conditions for horses in the German artillery unit were extremely harsh and led to many deaths.", answer: true, explanation: "This period is described as one of extreme hardship, with scarce food, constant exposure, and grueling work." },
+                { question: "David, Albert's friend in the Veterinary Corps, is tragically killed by a stray shell.", answer: true, explanation: "Albert is devastated by the news of David's death, which occurred when a shell hit the veterinary wagon he was with." },
+                { question: "After the war, Joey returns to working on the Narracott farm.", answer: true, explanation: "Joey returns to work on the land with old Zoey, though under Albert's loving care." }
             ],
             plotSO: [
                  { title: "Joey's Early Life and Sale", sentences: ["Joey is sold to Captain Nicholls by Albert's father.", "Albert and Joey form an unbreakable bond on the farm.", "Joey is bought by Albert's father at a horse sale.", "Albert makes his father promise never to hit Joey again after Joey kicks him."], correctOrder: ["Joey is bought by Albert's father at a horse sale.", "Albert and Joey form an unbreakable bond on the farm.", "Albert makes his father promise never to hit Joey again after Joey kicks him.", "Joey is sold to Captain Nicholls by Albert's father."] },
@@ -224,17 +225,17 @@
                 { question: "The Welsh soldier who helps rescue Joey from No Man's Land demonstrates:", options: ["Extreme aggression towards the enemy", "A pragmatic sense of humor and shared humanity with the German soldier", "A complete lack of understanding of horses", "A desire to capture Joey for his own personal gain"], answer: "A pragmatic sense of humor and shared humanity with the German soldier", explanation: "His interaction with the German soldier is marked by a surprising camaraderie and a peaceful resolution to a potentially tense situation." },
                 { question: "Major Martin, the veterinary officer, ultimately makes the decision to:", options: ["Immediately put Joey down upon diagnosing tetanus due to the low chance of survival.", "Refuse any treatment for Joey as he is just an ordinary horse.", "Allow and support the extensive, round-the-clock effort to save Joey from tetanus.", "Send Joey back to the front line despite his illness."], answer: "Allow and support the extensive, round-the-clock effort to save Joey from tetanus.", explanation: "Despite the grim prognosis, Major Martin is persuaded by Albert, David, and Sergeant Thunder to give Joey a chance, and he directs the treatment." }
             ],
-            charactersTF: [
-                { question: "Albert's mother consistently supports her husband's decision to sell Joey.", answer: false, explanation: "While she tries to mediate and explain her husband's actions, she is clearly pained by the sale and understands Albert's distress." },
-                { question: "Topthorn is shown to be jealous of Joey's close relationship with Albert.", answer: false, explanation: "Topthorn and Joey share a deep bond of friendship and mutual support, with no indication of jealousy." },
-                { question: "Emilie's grandfather is initially unwilling to help care for Joey and Topthorn.", answer: false, explanation: "Emilie's grandfather works alongside her to care for the horses, providing for them and recognizing their value." },
-                { question: "Captain Stewart, Topthorn's owner, shows little concern for Joey after Captain Nicholls' death.", answer: false, explanation: "Captain Stewart takes responsibility for Joey, assigns him a new rider (Trooper Warren), and ensures he is looked after, partly out of loyalty to Nicholls." },
-                { question: "The 'butcher from Cambrai' at the auction represents hope and salvation for the horses.", answer: false, explanation: "The butcher represents the grim fate many army horses faced – being sold for meat. His presence creates tension and fear." },
-                { question: "Trooper Warren's primary skill is his exceptional horsemanship.", answer: false, explanation: "Trooper Warren is a kind man but is described as an inexperienced and often clumsy rider." },
-                { question: "Herr Hauptmann, the tall German officer, immediately wants to use Joey and Topthorn as his personal riding horses.", answer: false, explanation: "He admires their quality and initially protests their use as cart horses, but the needs of the wounded prevail. He doesn't claim them for personal riding." },
-                { question: "The two golden Haflinger ponies in the German gun team are lazy and add little to the effort.", answer: false, explanation: "Despite their size, the Haflingers are described as hardworking, courageous, and a cheering sight, pulling their weight in the team." },
-                { question: "David, Albert's friend in the Veterinary Corps, is skeptical about Albert's chances of ever finding Joey.", answer: true, explanation: "While supportive, David often gently teases Albert about the slim odds of finding one specific horse among so many in the war." },
-                { question: "Maisie Cobbledick, Albert's wife, shares Albert's deep passion for horses.", answer: false, explanation: "Joey notes that Maisie never really 'took to' him, and vice versa, suggesting she didn't share the same profound connection with horses as Albert." }
+            charactersTF: [ // Balanced T/F for this section
+                { question: "Albert's mother is portrayed as a weak character who has little influence on family decisions.", answer: false, explanation: "Albert's mother often acts as a mediator and a voice of reason, showing quiet strength and understanding, though she cannot always prevent her husband's actions." },
+                { question: "Topthorn's defining characteristic is his speed, making him faster than Joey in every encounter.", answer: false, explanation: "While Topthorn is strong and fast, the narrative suggests Joey might be slightly faster, but Topthorn excels in stamina and presence. They are well-matched companions rather than direct competitors in speed." },
+                { question: "Emilie's grandfather shows no emotional attachment to Joey and Topthorn, seeing them only as farm animals.", answer: false, explanation: "Emilie's grandfather clearly develops an affection for the horses, evident in his care for them and his ultimate actions at the auction to fulfill Emilie's wish." },
+                { question: "Captain Stewart is depicted as a cold and distant officer, unlike his friend Captain Nicholls.", answer: false, explanation: "Captain Stewart shows loyalty to Nicholls by caring for Joey, and he has a strong bond with his own horse, Topthorn. He is a competent and respected officer." },
+                { question: "The 'butcher from Cambrai' is a sympathetic character forced into his trade by the war.", answer: false, explanation: "He is depicted with 'weasel eyes' and a 'smile so full of consummate greed and evil,' representing a grim and unwelcome fate for the horses." },
+                { question: "Trooper Warren, despite his lack of riding skill, is deeply committed to Joey's well-being.", answer: true, explanation: "Joey notes that Warren's 'loving attention' kept him alive, highlighting his meticulous care despite his nervousness as a rider." },
+                { question: "Herr Hauptmann, the tall German officer, is secretly working against his own army to help the British.", answer: false, explanation: "Herr Hauptmann is a loyal German officer; his kindness towards the horses stems from a sense of honor and respect for animals, not from any allegiance to the British." },
+                { question: "The two golden Haflinger ponies are shown to be cowardly and unreliable under fire.", answer: false, explanation: "The Haflingers are described as courageous and hardworking, often bringing a moment of cheer despite their small size." },
+                { question: "David, Albert's friend, consistently believes that Albert will find Joey.", answer: false, explanation: "While a supportive friend, David is often realistically skeptical, teasing Albert about the 'one chance in half a million' of finding Joey." },
+                { question: "Maisie Cobbledick immediately bonds with Joey upon his return to the farm.", answer: false, explanation: "Joey narrates, 'I think she never took to me, nor I to her for that matter,' suggesting a lack of immediate warmth, possibly due to mutual jealousy for Albert's affection." }
             ],
             themesMC: [
                 { question: "One of the most prominent themes in 'War Horse' is:", options: ["The triumph of technology in warfare", "The inherent evil of all soldiers", "The enduring bond between humans and animals, and its persistence through hardship", "The economic benefits of war for rural communities"], answer: "The enduring bond between humans and animals, and its persistence through hardship", explanation: "The core of the story revolves around the deep connections Joey forms, especially with Albert, and how these bonds provide strength and hope." },
@@ -248,17 +249,17 @@
                 { question: "What does the narrative imply about the nature of memory and storytelling?", options: ["Memories of war are best forgotten as quickly as possible.", "Only human memories are significant; animal experiences are fleeting.", "Storytelling and remembrance are vital for honoring those lost and for understanding the past.", "Official historical accounts are always more accurate than personal narratives."], answer: "Storytelling and remembrance are vital for honoring those lost and for understanding the past.", explanation: "The entire novel is Joey's recounted memory, and Emilie's grandfather explicitly asks Albert to tell Emilie's story so she will be remembered." },
                 { question: "The contrast between the beauty of the natural world (fields, rivers, animals) and the destruction of war serves to:", options: ["Suggest that nature is indifferent to human suffering.", "Highlight the unnatural and devastating impact of human conflict on the world.", "Imply that war is a natural and inevitable part of life.", "Show that technology will always overcome nature."], answer: "Highlight the unnatural and devastating impact of human conflict on the world.", explanation: "The peaceful scenes of nature stand in stark contrast to the battlefields, emphasizing the destructive intrusion of war." }
             ],
-            themesTF: [
-                { question: "The novel presents a simplistic view of good versus evil, with one side in the war being entirely right and the other entirely wrong.", answer: false, explanation: "War Horse shows individuals with varying degrees of kindness and cruelty on all sides (British, German, French), avoiding a simplistic portrayal of the conflict." },
-                { question: "A key message is that animals, like Joey, are incapable of forming deep emotional attachments.", answer: false, explanation: "The entire story is built upon the profound emotional bonds Joey forms, especially with Albert, Topthorn, and Emilie." },
-                { question: "The story suggests that even in the midst of war, small acts of kindness and humanity can have a significant impact.", answer: true, explanation: "Numerous instances, from Captain Nicholls's care to Friedrich's affection and the soldiers' cooperation in No Man's Land, demonstrate this." },
-                { question: "The author, Michael Morpurgo, seems to advocate for the continued use of horses in modern warfare.", answer: false, explanation: "The novel often highlights the vulnerability of horses to modern weaponry and the suffering they endure, implicitly criticizing their use in such conflicts." },
-                { question: "The theme of survival in 'War Horse' is portrayed as being solely about physical endurance.", answer: false, explanation: "Survival is also deeply linked to emotional resilience, hope, and the strength derived from bonds of friendship and love." },
-                { question: "The narrative implies that promises made, especially to loved ones, hold little weight in the chaos of war.", answer: false, explanation: "Promises, such as Albert's promise to find Joey and Emilie's grandfather's promise to her, are powerful motivating forces in the story." },
-                { question: "The book suggests that the horrors of war can completely eradicate a person's (or animal's) capacity for trust and affection.", answer: false, explanation: "Despite his traumatic experiences, Joey continues to form bonds and trust those who show him kindness, like Albert and Emilie." },
-                { question: "One of the underlying messages is that war primarily affects soldiers, with minimal impact on civilian populations or the landscape.", answer: false, explanation: "The story clearly shows the devastation of the landscape (No Man's Land, ruined villages) and the profound impact on civilians like Emilie and her grandfather." },
-                { question: "The novel ultimately concludes that all sacrifices made during the war were worthwhile and led to a better world.", answer: false, explanation: "While there's relief at the war's end, the tone is more of sorrow for the losses and a poignant understanding of the cost, rather than a triumphant declaration of worth." },
-                { question: "Through Joey's perspective, the reader gains insight into the shared experiences and suffering of ordinary soldiers on both sides of the conflict.", answer: true, explanation: "Joey serves with both British and German forces, and his observations reveal the common humanity and hardships faced by soldiers irrespective of their uniform." }
+            themesTF: [ // Balanced T/F for this section
+                { question: "The novel presents war as a glorious adventure that builds character.", answer: false, explanation: "War Horse consistently portrays war as brutal, wasteful, and a source of immense suffering for both humans and animals." },
+                { question: "Friendship and loyalty are presented as powerful forces capable of transcending even the horrors of war.", answer: true, explanation: "The bonds between Joey and Albert, Joey and Topthorn, and even between soldiers on opposing sides (like in No Man's Land) highlight this theme." },
+                { question: "The story suggests that animals are indifferent to human conflicts and emotions.", answer: false, explanation: "Joey's narration is filled with his perceptions of human emotions, his own fear, loyalty, and grief, demonstrating deep emotional capacity." },
+                { question: "A recurring message is the futility of many wartime actions and the immense waste of life.", answer: true, explanation: "Scenes like the cavalry charge against machine guns and the constant attrition underscore the senselessness and waste inherent in the conflict." },
+                { question: "The novel implies that only humans are capable of acts of true cruelty.", answer: false, explanation: "While human cruelty is evident, the focus is more on the circumstances of war driving desperate actions rather than inherent evil. Some animals, like Coco, are also described with negative traits." },
+                { question: "Hope is depicted as a fragile but essential element for survival in the story.", answer: true, explanation: "Albert's hope of finding Joey, and Joey's own will to live, fueled by memories and connections, are crucial for their endurance." },
+                { question: "The narrative suggests that compassion is a trait exclusive to one side of the conflict.", answer: false, explanation: "Kindness is shown by British, German, and French characters, emphasizing that humanity is not defined by nationality." },
+                { question: "The story ultimately argues that animals should never be used in warfare.", answer: true, explanation: "While not explicitly stated as a direct argument, the detailed depiction of the suffering and death of horses strongly implies a critique of their use in war." },
+                { question: "Memory and remembrance play a vital role in honoring those lost and giving meaning to survival.", answer: true, explanation: "Joey's narration itself is an act of remembrance, and Emilie's grandfather's wish for her to be remembered underscores this theme." },
+                { question: "The novel concludes with a sense that the world has learned from the war and such conflicts will never happen again.", answer: false, explanation: "The ending is more personal, focusing on Joey and Albert's return. While there's relief, there isn't a broad statement about humanity learning its lesson, reflecting the historical reality that WWI was not 'the war to end all wars.'" }
             ],
             quotesMC: [
                 { question: "Who says: 'I tell you, my friend, there's divinity in a horse, and specially in a horse like this. God got it right the day he created them.'?", options: ["Albert Narracott", "Captain Nicholls", "Rudi (the young German soldier)", "Emilie's grandfather"], answer: "Rudi (the young German soldier)", explanation: "Rudi expresses this deep admiration for Topthorn to his companion Karl, shortly before Topthorn's death." },
@@ -298,13 +299,30 @@
             ]
         };
 
-        let score = 0;
-        let totalQuestionsCount = 0;
-        allQuestionSections.forEach(section => totalQuestionsCount += section.count);
+        const allQuestionSections = [
+            { type: 'mc', data: quizMasterData.warmupMC, container: 'warmup-mc-container', count: 5 }, 
+            { type: 'tf', data: quizMasterData.warmupTF, container: 'warmup-tf-container', count: 5 }, 
+            { type: 'mc', data: quizMasterData.plotMC, container: 'plot-mc-container', count: 10 }, 
+            { type: 'tf', data: quizMasterData.plotTF, container: 'plot-tf-container', count: 10 }, 
+            { type: 'so', data: quizMasterData.plotSO, container: 'plot-so-container', count: 2 }, 
+            { type: 'mc', data: quizMasterData.charactersMC, container: 'characters-mc-container', count: 10 }, 
+            { type: 'tf', data: quizMasterData.charactersTF, container: 'characters-tf-container', count: 10 }, 
+            { type: 'mc', data: quizMasterData.themesMC, container: 'themes-mc-container', count: 10 }, 
+            { type: 'tf', data: quizMasterData.themesTF, container: 'themes-tf-container', count: 10 }, 
+            { type: 'mc', data: quizMasterData.quotesMC, container: 'quotes-mc-container', count: 8 }, 
+            { type: 'mc', data: quizMasterData.vocabularyMC, container: 'vocabulary-mc-container', count: 10 }, 
+            { type: 'mc', data: quizMasterData.hypotheticalMC, container: 'hypothetical-mc-container', count: 8 }, 
+            { type: 'so', data: quizMasterData.hypotheticalSO, container: 'hypothetical-so-container', count: 2 } 
+        ];
 
-        document.getElementById('total-questions').textContent = totalQuestionsCount;
+        let score = 0;
         const scoreElement = document.getElementById('score');
-        let questionCounter = 0;
+        let questionCounter = 0; // Used to number questions sequentially
+
+        // Global variables for touch drag-and-drop
+        let g_activeTouchDraggedItem = null;
+        let g_activeTouchXOffset = 0;
+        let g_activeTouchYOffset = 0;
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -313,10 +331,10 @@
             }
         }
 
-        function createQuestionCard(questionText, questionNumber) {
+        function createQuestionCard(questionText, currentQuestionNumber) {
             const card = document.createElement('div');
             card.className = 'quiz-card p-6 md:p-8 rounded-lg';
-            card.innerHTML = `<h3 class="text-2xl font-semibold mb-5">${questionNumber}. ${questionText}</h3>`;
+            card.innerHTML = `<h3 class="text-2xl font-semibold mb-5">${currentQuestionNumber}. ${questionText}</h3>`;
             
             const optionsContainer = document.createElement('div');
             optionsContainer.className = 'space-y-4';
@@ -326,9 +344,21 @@
 
         function createMultipleChoiceQuestion(qData, containerId) {
             const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container not found for MC: ${containerId}`);
+                return;
+            }
             questionCounter++;
-            const questionId = `mcq-${questionCounter}`;
+            const questionId = `mcq-${questionCounter}`; // Unique ID for options of this question
             const { card, optionsContainer } = createQuestionCard(qData.question, questionCounter);
+
+            if (!qData.options || !Array.isArray(qData.options)) {
+                console.error("Malformed MC question data (missing or invalid options):", qData);
+                // Optionally, append a message to the card indicating the error
+                card.innerHTML += "<p class='text-red-500'>Error: Question options are missing or invalid.</p>";
+                container.appendChild(card); // Still append card to show there was a question
+                return; 
+            }
 
             qData.options.forEach(optionText => {
                 const optionDiv = document.createElement('div');
@@ -342,9 +372,20 @@
 
         function createTrueFalseQuestion(qData, containerId) {
             const container = document.getElementById(containerId);
+             if (!container) {
+                console.error(`Container not found for TF: ${containerId}`);
+                return;
+            }
             questionCounter++;
             const questionId = `tfq-${questionCounter}`;
             const { card, optionsContainer } = createQuestionCard(qData.question, questionCounter);
+
+            if (typeof qData.answer !== 'boolean') {
+                 console.error("Malformed TF question data (answer is not boolean):", qData);
+                 card.innerHTML += "<p class='text-red-500'>Error: Question answer format is invalid.</p>";
+                 container.appendChild(card);
+                 return;
+            }
 
             ['True', 'False'].forEach(optionText => {
                 const optionDiv = document.createElement('div');
@@ -394,6 +435,10 @@
 
         function createSentenceOrderingQuestion(qData, containerId) {
             const container = document.getElementById(containerId);
+            if (!container) {
+                console.error(`Container not found for SO: ${containerId}`);
+                return;
+            }
             questionCounter++;
             const questionId = `soq-${questionCounter}`;
 
@@ -406,7 +451,7 @@
             mainFlexContainer.className = 'flex flex-col md:flex-row gap-6';
 
             const sourceContainer = document.createElement('div');
-            sourceContainer.id = `${questionId}-source`; // Added ID for touch fallback
+            sourceContainer.id = `${questionId}-source`; 
             sourceContainer.className = 'w-full md:w-1/2 mb-4 md:mb-0 p-4 border border-gray-300 rounded-md source-draggable-area no-select space-y-3';
             sourceContainer.innerHTML = `<h4 class="font-semibold text-lg text-gray-700 mb-3">SENTENCES TO ORDER:</h4>`;
 
@@ -414,6 +459,13 @@
             dropZone.id = `drop-zone-${questionId}`;
             dropZone.className = 'w-full md:w-1/2 p-4 rounded-lg space-y-3 drop-zone no-select';
             
+            if (!qData.sentences || !Array.isArray(qData.sentences) || !qData.correctOrder || !Array.isArray(qData.correctOrder)) {
+                console.error("Malformed SO question data:", qData);
+                card.innerHTML += "<p class='text-red-500'>Error: Sentence ordering question data is invalid.</p>";
+                container.appendChild(card);
+                return;
+            }
+
             const shuffledSentences = qData.sentences.slice();
             shuffleArray(shuffledSentences);
 
@@ -426,8 +478,7 @@
                 
                 draggable.addEventListener('dragstart', handleDragStart);
                 draggable.addEventListener('dragend', handleDragEnd);
-                draggable.addEventListener('touchstart', handleTouchStart, { passive: true });
-                // Touchmove and Touchend are on document level
+                draggable.addEventListener('touchstart', handleTouchStartSO, { passive: true });
 
                 sourceContainer.appendChild(draggable);
             });
@@ -445,10 +496,7 @@
             card.appendChild(buttonContainer);
             container.appendChild(card);
 
-            // Drag and Drop variables specific to this question instance
             let currentMouseDraggedItem = null; 
-            let currentTouchDraggedItem = null;
-            let currentXOffset = 0, currentYOffset = 0;
 
             function handleDragStart(e) {
                 if (!checkButton.disabled) {
@@ -457,7 +505,7 @@
                 }
             }
             function handleDragEnd(e) {
-                if (!checkButton.disabled) {
+                if (!checkButton.disabled && e.target.classList.contains('draggable')) { // Added check
                     e.target.classList.remove('dragging');
                     currentMouseDraggedItem = null;
                 }
@@ -471,32 +519,32 @@
                     e.preventDefault();
                     if (currentMouseDraggedItem && !checkButton.disabled) {
                         const targetDropArea = e.currentTarget;
-                        const afterElement = getDragAfterElement(targetDropArea, e.clientY);
+                        const afterElement = getDragAfterElementSO(targetDropArea, e.clientY);
                         if (afterElement == null) {
                             targetDropArea.appendChild(currentMouseDraggedItem);
                         } else {
                             targetDropArea.insertBefore(currentMouseDraggedItem, afterElement);
                         }
+                        // No need to remove 'dragging' here, dragend will handle it.
                     }
                 });
             });
             
-            function handleTouchStart(e) {
-                const touchedEl = e.currentTarget; // Event listener is on the draggable itself
+            function handleTouchStartSO(e) {
+                const touchedEl = e.currentTarget; 
                 if (touchedEl && !checkButton.disabled) {
-                    currentTouchDraggedItem = touchedEl;
-                    currentTouchDraggedItem.classList.add('touch-dragging'); 
+                    g_activeTouchDraggedItem = touchedEl; 
+                    g_activeTouchDraggedItem.classList.add('touch-dragging'); 
                     
-                    const rect = currentTouchDraggedItem.getBoundingClientRect();
-                    currentXOffset = e.touches[0].clientX - rect.left;
-                    currentYOffset = e.touches[0].clientY - rect.top;
+                    const rect = g_activeTouchDraggedItem.getBoundingClientRect();
+                    g_activeTouchXOffset = e.touches[0].clientX - rect.left;
+                    g_activeTouchYOffset = e.touches[0].clientY - rect.top;
                     
                     document.body.classList.add('no-select'); 
                 }
             }
-            // Global touch move and end listeners are added once below
             
-            function getDragAfterElement(container, y) {
+            function getDragAfterElementSO(container, y) {
                 const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging):not(.touch-dragging)')];
                 return draggableElements.reduce((closest, child) => {
                     const box = child.getBoundingClientRect();
@@ -539,28 +587,16 @@
             });
         }
 
-        // Global touch listeners for drag-and-drop (added once)
-        let activeTouchDraggedItem = null; // Stores the item being touch-dragged globally
-        let activeTouchXOffset = 0, activeTouchYOffset = 0;
-
         document.addEventListener('touchmove', (e) => {
-            if (activeTouchDraggedItem) {
+            if (g_activeTouchDraggedItem) {
                 e.preventDefault();
-                // Optional: visual move feedback
-                // activeTouchDraggedItem.style.position = 'absolute'; // Needs more work for proper fixed positioning
-                // activeTouchDraggedItem.style.left = (e.touches[0].pageX - activeTouchXOffset) + 'px';
-                // activeTouchDraggedItem.style.top = (e.touches[0].pageY - activeTouchYOffset) + 'px';
             }
         }, { passive: false });
 
         document.addEventListener('touchend', (e) => {
-            if (activeTouchDraggedItem) {
-                activeTouchDraggedItem.classList.remove('touch-dragging');
+            if (g_activeTouchDraggedItem) {
+                g_activeTouchDraggedItem.classList.remove('touch-dragging');
                 document.body.classList.remove('no-select');
-                // activeTouchDraggedItem.style.position = ''; // Reset style if changed
-                // activeTouchDraggedItem.style.left = '';
-                // activeTouchDraggedItem.style.top = '';
-
 
                 const touchX = e.changedTouches[0].clientX;
                 const touchY = e.changedTouches[0].clientY;
@@ -571,8 +607,7 @@
                 for (const area of allDropAreas) {
                     const rect = area.getBoundingClientRect();
                     if (touchX >= rect.left && touchX <= rect.right && touchY >= rect.top && touchY <= rect.bottom) {
-                        // Check if this area belongs to the same question card as the dragged item
-                        if (activeTouchDraggedItem.closest('.quiz-card').contains(area)) {
+                        if (g_activeTouchDraggedItem.closest('.quiz-card').contains(area)) {
                             targetContainer = area;
                             break;
                         }
@@ -582,25 +617,23 @@
                 if (targetContainer) {
                     const afterElement = getDragAfterElementGlobal(targetContainer, touchY);
                     if (afterElement == null) {
-                        targetContainer.appendChild(activeTouchDraggedItem);
+                        targetContainer.appendChild(g_activeTouchDraggedItem);
                     } else {
-                        targetContainer.insertBefore(activeTouchDraggedItem, afterElement);
+                        targetContainer.insertBefore(g_activeTouchDraggedItem, afterElement);
                     }
                 } else { 
-                    // Fallback: try to return to its original source container if not dropped in a valid zone
-                    const questionCard = activeTouchDraggedItem.closest('.quiz-card');
+                    const questionCard = g_activeTouchDraggedItem.closest('.quiz-card');
                     if (questionCard) {
                         const originalSourceContainer = questionCard.querySelector('.source-draggable-area');
                         if (originalSourceContainer) {
-                            originalSourceContainer.appendChild(activeTouchDraggedItem);
+                            originalSourceContainer.appendChild(g_activeTouchDraggedItem);
                         }
                     }
                 }
-                activeTouchDraggedItem = null;
+                g_activeTouchDraggedItem = null;
             }
         });
         
-        // Need to make getDragAfterElementGlobal available for the global touchend listener
         function getDragAfterElementGlobal(container, y) {
             const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging):not(.touch-dragging)')];
             return draggableElements.reduce((closest, child) => {
@@ -614,75 +647,28 @@
             }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
 
-        // Modify the touchstart handler within createSentenceOrderingQuestion to use the global activeTouchDraggedItem
-        // This is done by removing `let currentTouchDraggedItem = null;` from `createSentenceOrderingQuestion`
-        // and having `handleTouchStart` assign to `activeTouchDraggedItem`.
-        // The `handleTouchStart` should be defined outside `createSentenceOrderingQuestion` if it's to be reused,
-        // or passed `checkButton.disabled` status. For simplicity here, it's kept inside but uses the global var.
-        // The `touchstart` listener in `createSentenceOrderingQuestion` should be:
-        // draggable.addEventListener('touchstart', (e) => {
-        //     const touchedEl = e.currentTarget;
-        //     const checkButton = touchedEl.closest('.quiz-card').querySelector('button'); // Find its own check button
-        //     if (touchedEl && !checkButton.disabled) {
-        //         activeTouchDraggedItem = touchedEl; // Use global var
-        //         activeTouchDraggedItem.classList.add('touch-dragging'); 
-        //         const rect = activeTouchDraggedItem.getBoundingClientRect();
-        //         activeTouchXOffset = e.touches[0].clientX - rect.left;
-        //         activeTouchYOffset = e.touches[0].clientY - rect.top;
-        //         document.body.classList.add('no-select'); 
-        //     }
-        // }, { passive: true });
-        // This change is complex to integrate perfectly without refactoring `createSentenceOrderingQuestion` significantly.
-        // The current per-instance touch variables might lead to issues if multiple sentence orderings are touched simultaneously.
-        // For now, the provided code uses instance-specific touch variables which is simpler but less ideal for global listeners.
-        // The fix for now is to ensure the global listeners correctly identify the *active* item.
-        // The most robust fix would be to manage `activeTouchDraggedItem` at a higher scope and pass necessary context.
-        // However, the current structure where `touchstart` is on the draggable itself and sets `currentTouchDraggedItem` (instance-specific)
-        // means the global `touchmove` and `touchend` need to refer to this instance-specific variable.
-        // This is a flaw in the current global listener approach if `currentTouchDraggedItem` is not globally accessible.
-        // The provided code has `currentTouchDraggedItem` local to `createSentenceOrderingQuestion`.
-        // This means the global listeners `document.addEventListener('touchmove', ...)` and `document.addEventListener('touchend', ...)`
-        // will not work as intended because `touchDraggedItem` (if they refer to a global one) will be different from the one set in `touchstart`.
-
-        // Correct approach for touch with global listeners:
-        // `activeTouchDraggedItem` should be global. `touchstart` sets this.
-        // `touchend` uses this global `activeTouchDraggedItem`.
-
-        // Re-attaching touchstart to set the global activeTouchDraggedItem
-        // This must be done carefully. The event listeners for touchstart should be on the draggable items.
-        // The `createSentenceOrderingQuestion` function creates these.
-        // We will modify `createSentenceOrderingQuestion` so its `touchstart` sets `activeTouchDraggedItem`.
-
-        // The `touchstart` listener inside `createSentenceOrderingQuestion` should be:
-        // draggable.addEventListener('touchstart', (e) => {
-        //     const touchedEl = e.currentTarget;
-        //     const localCheckButton = card.querySelector('button'); // Get button for THIS card
-        //     if (touchedEl && !localCheckButton.disabled) {
-        //         activeTouchDraggedItem = touchedEl; // Assign to global
-        //         activeTouchDraggedItem.classList.add('touch-dragging');
-        //         const rect = activeTouchDraggedItem.getBoundingClientRect();
-        //         activeTouchXOffset = e.touches[0].clientX - rect.left; // Use global offsets
-        //         activeTouchYOffset = e.touches[0].clientY - rect.top;
-        //         document.body.classList.add('no-select');
-        //     }
-        // }, { passive: true });
-        // This is how it's already structured, which is good. The global listeners will use `activeTouchDraggedItem`.
-
-
         function buildQuiz() {
             questionCounter = 0; 
             score = 0; 
             scoreElement.textContent = score;
 
             allQuestionSections.forEach(section => {
+                const container = document.getElementById(section.container);
+                if (!container) {
+                    console.error(`BuildQuiz: Container element ${section.container} not found.`);
+                    return; // Skip this section if container doesn't exist
+                }
+
                 const dataArray = section.data.slice(); 
                 shuffleArray(dataArray);
-                // Ensure 'count' doesn't exceed the number of available unique questions for that section
                 const numQuestionsToDisplay = Math.min(section.count, dataArray.length);
                 const questionsForSection = dataArray.slice(0, numQuestionsToDisplay);
 
-
                 questionsForSection.forEach(qData => {
+                    if (!qData || typeof qData.question !== 'string' ) { // Basic check for qData validity
+                        console.warn("Skipping malformed question data:", qData);
+                        return;
+                    }
                     if (section.type === 'mc') {
                         createMultipleChoiceQuestion(qData, section.container);
                     } else if (section.type === 'tf') {
@@ -692,13 +678,13 @@
                     }
                 });
             });
-             // Update total questions count based on what's actually rendered
             document.getElementById('total-questions').textContent = questionCounter;
         }
         
         document.getElementById('reset-quiz').addEventListener('click', () => {
             allQuestionSections.forEach(section => {
-                 document.getElementById(section.container).innerHTML = '';
+                 const container = document.getElementById(section.container);
+                 if(container) container.innerHTML = '';
             });
             buildQuiz(); 
         });
